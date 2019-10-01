@@ -1,0 +1,43 @@
+body, html, .capa{
+
+height: 100%;
+
+
+}
+
+body{
+
+
+        	 background:                
+                    linear-gradient(50deg,#5dbb79,rgb(51, 54, 54));
+                    background-attachment: fixed;
+                    font-family: Helvetica,Arial,sans-serif;
+}
+
+button{
+    margin-bottom: 15px;
+	margin-left: 15px;
+	background-color: transparent;
+	border-radius: 15px;
+	color:white;	
+}
+
+select{
+margin-bottom: 15px;
+	margin-left: 15px;
+	width: 85px;
+
+
+}
+h3{
+    
+
+	
+	font-size: 50px;
+	font-weight:25;
+	letter-spacing: -0.05em;
+	margin-bottom: 50px;	
+    
+
+}
+

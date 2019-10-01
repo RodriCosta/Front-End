@@ -1,0 +1,191 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">h1{
+color: #7e6e30;
+}
+      
+      textarea {
+width: 474px;
+height: 120px;
+line-height: 20px;
+}
+      input, textarea,select,date{
+width: 472px;
+padding:5px
+
+}
+      
+      td{
+        
+        color: black;
+    margin-left:0px;
+      }
+    
+      
+      input, select, textarea,select,date {
+color: black;
+}
+        .div1 {
+    width:auto;
+    height:auto;
+    overflow:hidden;
+   margin:5px;
+   padding:5px ;
+   border: 1px solid  #7e6e30;      
+}
+	</style>
+	<script>
+
+     setTimeout(function(){ 
+    
+        function buscaEmpresa() {
+
+                    debugger;
+                    var Nome = $("#CAMPO_7").val();
+                    var campos = [{
+                        "Id": 4,
+                        "TipoDocumentalId": 4,
+                        "Comparacao": 6,
+                        "ColunaTipo": "C",
+                        "Valor": Nome
+                    }];
+                    Ecm.PesquisarDocumentos(4, campos, 10, function (data) {
+                        debugger;
+                        Dados = JSON.parse(data);
+                        console.log(Dados);
+                      
+                      
+                      $('#CAMPO_11').val(Dados.documentos[0].CamposValor[4].Valor.toString());
+                      $('#CAMPO_12').val(Dados.documentos[0].CamposValor[6].Valor.toString());
+                      $('#CAMPO_13').val(Dados.documentos[0].CamposValor[5].Valor.toString());
+                      
+                    
+                    });
+           
+                
+
+            };
+
+    
+if($("#CAMPO_7").val() != ""){
+  
+  buscaEmpresa();
+  
+}
+
+                
+      
+    
+
+
+
+             
+
+         if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() >= "2") {
+           
+           $("#divInterna1").addClass("div1");
+           $("#divInterna2").addClass("div1");
+           $("#divInterna3").addClass("div1");
+           $("#divInterna4").addClass("div1");
+           $("#divInterna5").addClass("div1");
+           $("#divInterna6").addClass("div1");
+           $("#divInterna7").addClass("div1");
+           $("#divInterna8").addClass("div1");
+           $("#divInterna9").addClass("div1");
+           $("#divInterna10").addClass("div1");
+           $("#divInterna11").addClass("div1");
+           $("#divInterna12").addClass("div1");
+         
+            
+       }
+      
+          }, 100);
+
+  </script>
+</head>
+<body style="cursor: auto;">
+<div class="page-header">
+<h1><img alt="" src="http://a3ccellerate.com/FATURA/Imagens/aparencia/LogoEllosP.jpg" style="height: 50px; width: 250px;" /></h1>
+
+<h1>Cadastro Fornecedor</h1>
+</div>
+
+<table border="0" cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td colspan="2">
+			<div id="divInterna1">Controle<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="1" data-campo-largura="200" style="display:block;"><input id="@@1@@" placeholder="1 - Controle" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna2">Numero da Nota Fiscal<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="2" data-campo-largura="200" style="display:block;"><input id="@@2@@" placeholder="2 - Número Nota Fiscal" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna3">Data de Emiss&atilde;o<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="4" data-campo-largura="200" style="display:block;"><input id="@@4@@" placeholder="4 - Data Emissão" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna4">Prestador<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="3" data-campo-largura="200" style="display:block;"><input id="@@3@@" placeholder="3 - Prestador" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna5">CNPJ<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="7" data-campo-largura="200" style="display:block;"><input id="@@7@@" placeholder="7 - CNPJ Prestador" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna6">Valor NF<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="5" data-campo-largura="200" style="display:block;"><input id="@@5@@" placeholder="5 - Valor NF" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna7">Data de Vencimento<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="9" data-campo-largura="200" style="display:block;"><input id="@@9@@" placeholder="9 - Vencimento NF" style="width:200px;" type="date" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<div id="divInterna8">CNAE<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="6" data-campo-largura="200" style="display:block;"><input id="@@6@@" placeholder="6 - CNAE" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna9">Contato<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="11" data-campo-largura="200" style="display:block;"><input id="@@11@@" placeholder="11 - Contato Prestador" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna10">Telefone<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="12" data-campo-largura="200" style="display:block;"><input id="@@12@@" placeholder="12 - Telefone Prestador" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<div id="divInterna11">E-mail<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="13" data-campo-largura="200" style="display:block;"><input id="@@13@@" placeholder="13 - E-Mail Prestador" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<div id="divInterna12">Observa&ccedil;&otilde;es<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="10" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@10@@" name="message" placeholder="10 - Observações" rows="10">   </textarea></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="divFornecCnpj">&nbsp;</div>
+</body>
+</html>

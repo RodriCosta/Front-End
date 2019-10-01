@@ -1,0 +1,174 @@
+<html>
+<head>
+	<style type="text/css">#bloco{
+        width: 580px;
+        height: 950px;
+        background-color: #217ebd;
+        -webkit-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+        -moz-box-shadow:    9px 7px 5px rgba(50, 50, 50, 0.77);
+        box-shadow:         9px 7px 5px rgba(50, 50, 50, 0.77);
+      margin: 100px 100px;
+      padding:15px;
+      color:white;
+    }
+      p, label{
+        text-align: left;
+      }
+      h3{
+        
+        font-size: 150%;
+      }
+	</style>
+	<script>
+  
+   if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "17") {
+      var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://a3ccellerate.com/homologa/api/auth/token",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "96b4591b-b61a-02e3-87b7-41b341d61e38"
+  },
+  "processData": false,
+  "data": "{\n\t\"usuario\":\"admin\",\n\t\"senha\":\"@3-MSD_2611\",\n\t\"email\":\"\"\n\t\n}"
+}
+
+$.ajax(settings).done(function (response) {
+ 
+   $("#CAMPO_27").val(response.token);
+  
+  var token = response.token;
+  
+  var codigo = token.substring(token.length - 8);
+  
+   $("#CAMPO_33").val(codigo);
+  
+  
+});
+          setTimeout(function(){ 
+      
+      $("#transicao-id-20").hide();
+      $("#transicao-id-22").hide();
+      
+      
+      }, 100);
+    
+   function myFunction() {
+     $("#transicao-id-22").hide();
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+     
+     
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+       
+      
+      $("#transicao-id-20").show();
+     
+      
+      
+      
+  } else {
+     
+      
+      $("#transicao-id-20").hide();
+    
+      
+      
+    
+  }
+}
+     
+        function myFunctionNegado() {
+           $("#transicao-id-20").hide();
+  // Get the checkbox
+  var checkBoxNegado = document.getElementById("myCheckNegado");
+     
+     
+  // If the checkbox is checked, display the output text
+  if (checkBoxNegado.checked == true){
+       
+      
+      
+      $("#transicao-id-22").show();
+      
+      
+      
+  } else {
+     
+      
+   
+      $("#transicao-id-22").hide();
+      
+      
+    
+  }
+}
+    
+ 
+}
+  
+  </script>
+	<title></title>
+</head>
+<body style="cursor: col-resize;">
+<div align="center" id="bloco">
+<h3 style="font-weight: bold;">Termo de Aceite Eletr&ocirc;nico</h3>
+
+<p>A assinatura eletr&ocirc;nica pode ser gerada de diferentes formas, seja atrav&eacute;s de um aceite de termo eletr&ocirc;nico, uma caneta touch, mouse ou a imagem digitalizada da assinatura, dependendo do dispositivo ou tecnologia utilizada.<br />
+&nbsp; &nbsp;No momento da assinatura, s&atilde;o coletados dados adicionais, como voz, foto, IP do dispositivo utilizado, localiza&ccedil;&atilde;o, Token de confirma&ccedil;&atilde;o, al&eacute;m de outras informa&ccedil;&otilde;es que servem para individualizar ainda mais o processo.<br />
+&nbsp; &nbsp;A assinatura eletr&ocirc;nica atende &agrave;s normas da MP n&deg; 2.200-2/2001, Artigo 10 &sect; 2o., por&eacute;m &eacute; importante ressaltar que a assinatura eletr&ocirc;nica n&atilde;o atribui a mesma validade jur&iacute;dica que assinatura digital e n&atilde;o pode ser utilizada para alguns tipos de documentos ou contratos.<br />
+&nbsp; &nbsp;Estes Termos de Uso e todos os documentos aqui referidos e incorporados, incluindo o<br />
+&nbsp;</p>
+
+<p>(a)&nbsp; Voc&ecirc; reconhece que quando voc&ecirc; aperta um bot&atilde;o (click) para assinar um Documento, voc&ecirc; est&aacute; (i) autorizando o A3CCELLERATE&reg; a registrar de forma permanente a sua &ldquo;Assinatura&rdquo; (especificada nas cl&aacute;usulas 6(c), 6(d), e 6(e)) em um arquivo logicamente associado a esse documento (&ldquo;Log&rdquo;), e (ii) concordando que o Log (que registra Assinaturas e outras informa&ccedil;&otilde;es relevantes como hor&aacute;rio, eventos, e endere&ccedil;o de protocolo de internet) &eacute; exclusivo ao, e ser&aacute; considerado parte integrante do seu respectivo Documento.</p>
+
+<p>(b)&nbsp; Ao assinar, voc&ecirc; concorda que a sua Assinatura significa que (i) voc&ecirc; teve acesso para, e a oportunidade de examinar o Documento e seu teor, (ii) a sua capacidade como signat&aacute;rio est&aacute; corretamente refletida na sua Assinatura, e (iii) voc&ecirc; teve a inten&ccedil;&atilde;o de assinar para todos os fins indicados no Documento.</p>
+
+<p>(c)&nbsp; No caso de uma Conta Individual, a Assinatura &eacute; composta pela express&atilde;o &ldquo;Assinou&rdquo; (ou express&atilde;o equivalente e.g. &ldquo;Aprovou&rdquo;, &ldquo;Reconheceu&rdquo;, &ldquo;Assinou como&rdquo;), pelo Nome de Usu&aacute;rio, e pelo n&uacute;mero da Conta Individual do Usu&aacute;rio.</p>
+
+<p>(d)&nbsp; No caso de uma Conta Corporativa, a Assinatura &eacute; composta pela express&atilde;o &ldquo;Assinou&rdquo; (ou express&atilde;o equivalente e.g. &ldquo;Aprovou&rdquo;, &ldquo;Reconheceu&rdquo;, &ldquo;Assinou como&rdquo;), pelo Nome de Usu&aacute;rio, pelo t&iacute;tulo corporativo do Usu&aacute;rio, pela Denomina&ccedil;&atilde;o da Organiza&ccedil;&atilde;o, e pelo n&uacute;mero da Conta Corporativa.</p>
+
+<p>(e)&nbsp; No caso de uma Conta Institucional, a Assinatura &eacute; composta pela express&atilde;o &ldquo;Assinou&rdquo; (ou express&atilde;o equivalente e.g. &ldquo;Aprovou&rdquo;, &ldquo;Reconheceu&rdquo;, &ldquo;Assinou como&rdquo;), pelo t&iacute;tulo da Conta Institucional, pela Denomina&ccedil;&atilde;o da Organiza&ccedil;&atilde;o, e pelo n&uacute;mero da Conta Institucional.</p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>
+			<p><label style="font-weight: bold; "></label><input id="myCheck" name="contact" onclick="myFunction()" type="radio" value="myCheck" /><label style="font-weight: bold; ">Concordo com os termos acima.</label></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><label style="font-weight: bold; "></label><input id="myCheckNegado" name="contact" onclick="myFunctionNegado()" type="radio" value="Negado" /><label style="font-weight: bold; ">N&atilde;o concordo.</label></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div>
+<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">
+	<tbody>
+		<tr>
+			<td hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="21" data-campo-largura="200" style="display:block;"><input id="@@21@@" placeholder="21 - E-mail" style="width:200px;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="2" data-campo-largura="200" style="display:block;"><input id="@@2@@" placeholder="2 - Razão Social" style="width:200px;" type="text" /></span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+</div>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="33" data-campo-largura="200" style="display:block;"><input id="@@33@@" placeholder="33 - Codigo" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="30" data-campo-largura="200" style="display:block;"><input id="@@30@@" placeholder="30 - assinaturaClientePara" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="27" data-campo-largura="200" style="display:block;"><input id="@@27@@" placeholder="27 - Token" style="width:200px;" type="text" /></span></p>
+</div>
+</body>
+</html>

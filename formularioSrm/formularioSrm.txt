@@ -1,0 +1,202 @@
+<html>
+<head>
+	<style type="text/css">body {
+      padding: 10px;
+      
+    }
+
+.campo {
+      color: #072855;
+     
+      text-align:left;
+      font-family:"Helvetica Neue",Arial; 
+      width: 250px !important;
+      align:left;
+
+    }
+
+
+
+input[type=date] {
+
+       border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+color:gray;
+
+
+    }
+
+input[type=text] {
+
+       border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+color:gray;
+
+
+    }
+    
+
+    input[type=number] {
+
+       border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+display: inline-block;
+
+    }
+
+    textarea {
+    	
+    	width:250px;
+        height:150px;
+    	padding: 12px 20px;
+    	box-sizing: border-box;
+    	border: 2px solid #5a7da7;
+    	border-radius: 4px;
+    	background-color: #f8f8f8;
+
+display: inline-block; 	
+
+    }
+
+table, th, td {
+border: 1px solid none;
+ height: 50px;
+
+
+
+}
+.lab{
+
+color:#f68b2f;
+font-family:"Helvetica Neue",Arial;
+font-weight:bold;
+
+
+
+}
+.titulo{
+
+
+color:#1d3f80;
+font-family:"Helvetica Neue",Arial;
+font-weight:bold;
+}
+	</style>
+	<title></title>
+	<script id="scriptInput" type="text/javascript">$("body").ready(function(){$(document).ajaxComplete(function(){$("body .formulario-upload").each(function(){var input=$(this);var ck=$(this).parent();console.log(input);console.log(ck);if(ck.length>0){$(".tipoAnexoId").each(function(){console.log($(this));var id=$(this).data("tipo-anexo-id");if(id==input.data("tipo-anexo-id")){ck.removeClass("fa-ban font-red-thunderbird");ck.addClass("fa-check font-green-jungle")}})}})})})</script>
+</head>
+<body style="cursor: auto;">
+<h4 class="titulo"><span style="font-size:20px;"><img alt="" src="../ImagensUploads/aff92c48-35e1-4ae6-8cb1-1ab3231fab1c.jpg" style="width: 200px; height: 87px;" /></span></h4>
+
+<h4 class="titulo"><span style="font-size:20px;">&nbsp; Contrato De Servi&ccedil;o</span></h4>
+
+<p><span class="lab">C&oacute;digo</span><br />
+<span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="1" data-campo-largura="200" style="display:block;"><input id="@@1@@" placeholder="" style="width:200px;" type="text" /></span></span></p>
+
+<table>
+	<tbody>
+		<tr>
+			<td style="width: 442px;">
+			<p><span class="lab">Prestador 1</span><br />
+			<span style="color:#2c3e50;"><span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="2" data-campo-largura="200" style="display:block;"><input id="@@2@@" style="width:200px;" type="text" /></span></span></span></p>
+			</td>
+			<td style="width: 249px;">
+			<p><span class="lab">CNPJ 1</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="9" data-campo-largura="200" style="display:block;"><input id="@@9@@" style="width:200px;" type="text" /></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 442px;">
+			<p><span class="lab">Prestador 2</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="13" data-campo-largura="200" style="display:block;"><input id="@@13@@" placeholder="" style="width:200px;" type="text" /></span></p>
+			</td>
+			<td style="width: 249px;">
+			<p><span class="lab">CNPJ 2</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="16" data-campo-largura="200" style="display:block;"><input id="@@16@@" placeholder="16 - CNPJ Prestador2" style="width:200px;" type="text" /></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 442px;">
+			<p><span class="lab">Tomador 1</span><br />
+			<span class="lab"></span><span style="color:#2c3e50;"><span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="8" data-campo-largura="200" style="display:block;"><select id="@@8@@" style="border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+width:200px;
+       color:gray;"><option placeholder="8 - Tomador">8 - Tomador</option><option value="Valor02">Valor 02</option> </select></span></span></span></p>
+			</td>
+			<td style="width: 249px;">
+			<p><span class="lab">Tomador 2<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="17" data-campo-largura="200" style="display:block;"><select id="@@17@@" style="
+ border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+       color:gray;
+
+width:200px;"><option placeholder="">17 - Tomador2</option><option value="Valor02">Valor 02</option> </select></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 442px;">
+			<p><span class="lab">Prazo Contratual</span><br />
+			<span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="10" data-campo-largura="200" style="display:block;"><select id="@@10@@" style="
+
+
+ border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+       color:gray;
+
+width:200px; style=" width:200px=""><option>10 - Prazo</option><option value="Valor02">Valor 02</option> </select></span></span></p>
+			</td>
+			<td style="width: 249px;">
+			<p><span class="lab">Data Emiss&atilde;o</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="4" data-campo-largura="200" style="display:block;"><input id="@@4@@" placeholder="" style="width:200px;" type="date" /></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 442px;"><span class="lab">Data Validade</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="5" data-campo-largura="200" style="display:block;"><input id="@@5@@" placeholder="" style="width:200px;" type="date" /></span></td>
+			<td style="width: 249px;"><span class="lab" style="font-family:Tahoma,Geneva,sans-serif;">Valor Mensal</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="11" data-campo-largura="200" style="display:block;"><input id="@@11@@" placeholder="" style="width:200px;" type="number" /></span></td>
+		</tr>
+		<tr>
+			<td style="width: 442px;">
+			<p><span class="lab">Centro de Custo</span><br />
+			<span style="color:#2c3e50;"><span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="12" data-campo-largura="200" style="display:block;"><select id="@@12@@" style="
+ border: 2px solid #5a7da7;
+       border-radius: 4px;
+       background-color: #f8f8f8;
+       resize: none;
+       color:gray;
+
+width:200px;"><option placeholder="12 - Centro de Custo">12 - Centro de Custo</option><option value="Valor02">Valor 02</option> </select></span></span></span></p>
+			</td>
+			<td style="width: 249px;">
+			<p>&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" style="width: 442px;" valign="top">
+			<p><span class="lab">Descri&ccedil;&atilde;o Servi&ccedil;o</span><br />
+			<span style="color:#2c3e50;"><span style="font-family:Tahoma,Geneva,sans-serif;"><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="7" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@7@@" name="message" rows="10">   </textarea></span></span></span></p>
+			</td>
+			<td align="left" style="width: 249px;" valign="top">
+			<p><span class="lab">Observa&ccedil;&otilde;es</span><br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="15" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@15@@" name="message" placeholder="" rows="10"></textarea></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="lab"><span class="h-card fa fa-ban font-red-thunderbird"><i></i>Contrato de Servi&ccedil;o:&nbsp;<input class="formulario-upload" data-arquivo-nome="Contrato de Serviço" data-tipo-anexo-id="17" style="display: inline-block;" type="file" /> </span></p>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<html>
+<head>
+	<style type="text/css">h1{
+color: white;
+}
+      
+      textarea {
+width: 474px;
+height: 120px;
+line-height: 20px;
+}
+      input, textarea,select,date{
+width: 472px;
+padding:5px
+
+}
+      
+      td{
+        
+        color: black;
+    
+        
+      
+      }
+      
+      input, select, textarea,select,date {
+color: black;
+}
+        .div1 {
+ width:90%;
+    height:auto;
+    overflow:hidden;
+    margin:5px;
+  padding:5px ;
+  border: 1px solid  #903235;      
+}
+ 
+.botao{
+
+	border:1px solid white; background-color:transparent; color:white;
+  border-radius:10px;
+  padding: 10px 35px;
+	margin: 0px 15px;
+  width:200px;
+  
+}
+.botao:hover{
+
+	background-color: #58b249;
+	color:white;
+    transition: background 0.4s, color 0.4s;
+}
+	</style>
+	<title></title>
+	<script type="text/javascript">
+      setTimeout(function(){ 
+      
+      $("#transicao-id-23").hide();
+      
+      
+      }, 100);
+      
+  $("#botao").click(function(){
+      if($("#CAMPO_28").val() === $("#CAMPO_33").val()){
+      
+      
+      Ecm.alertSucesso("Código Aceito!!!");
+        $("#transicao-id-23").show();
+         $("#transicao-id-24").hide();
+      
+      
+    }
+    else{
+      
+      Ecm.alertErro("Código Inválido!!!");
+    }
+});
+  
+      if (!DocumentoVisualizacaoForm.estouEditando()) {
+               $("#botao").hide();   
+                } 
+    
+  
+  </script>
+	<style type="text/css">#bloco{
+        width: 500px;
+        height: 300px;
+         background-color: #217ebd;
+        -webkit-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+        -moz-box-shadow:    9px 7px 5px rgba(50, 50, 50, 0.77);
+        box-shadow:         9px 7px 5px rgba(50, 50, 50, 0.77);
+        margin: 100px 100px;
+      color:white;
+    }
+	</style>
+</head>
+<body>
+<div align="center" id="bloco" style="font-weight: bold;">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1 style=" font-weight: bold;">Validar Token</h1>
+
+<p><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="28" data-campo-largura="200" style="display:block;"><input id="@@28@@" placeholder="28 - Informar Token" style="width:200px;" type="text" /></span></p>
+<input class="botao" id="botao" type="button" value="Validar" />
+<div style="width:300;">
+<p>Digite ou cole o token (c&oacute;digo) recebido atrav&eacute;s do E-mail.</p>
+</div>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="31" data-campo-largura="200" style="display:block;"><input id="@@31@@" placeholder="31 - validarTokenPara" style="width:200px;" type="text" /></span></p>
+
+<p hidden="">codigo:</p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="33" data-campo-largura="200" style="display:block;"><input id="@@33@@" placeholder="33 - Codigo" style="width:200px;" type="text" /></span></p>
+</div>
+</body>
+</html>

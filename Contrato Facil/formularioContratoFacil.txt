@@ -1,0 +1,421 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">h1{
+color: #903235;
+}
+      
+      textarea {
+width: 474px;
+height: 120px;
+line-height: 20px;
+}
+      input, textarea,select,date{
+width: 472px;
+padding:5px
+
+}
+      
+      td{
+        
+        color: black;
+    
+        
+      
+      }
+      
+      input, select, textarea,select,date {
+color: black;
+}
+        .div1 {
+ width:90%;
+    height:auto;
+    overflow:hidden;
+    margin:5px;
+  padding:5px ;
+  border: 1px solid  #903235;      
+}
+	</style>
+	<script>
+       
+       setTimeout(function(){ 
+    
+  var login=    Ecm.retornaUsuario().login;
+    $("#CAMPO_23").val(login);
+    
+    var data = DocumentoVisualizacaoForm.retornaListaAnexosDocumento()[0].DataAlteracao;
+    
+    var versaoId = DocumentoVisualizacaoForm.retornaListaAnexosDocumento()[0].DocumentoVersaoId.toString();
+    
+    var id = DocumentoVisualizacaoForm.retornaListaAnexosDocumento()[0].Id.toString();
+    
+    var nomeInterno = DocumentoVisualizacaoForm.retornaListaAnexosDocumento()[0].NomeInterno;
+    
+    var info = 
+      
+      "data  "+data+"-"+
+      "versaoId "+versaoId+"-"+
+      "id "+id+"-"+
+      "nomeInterno " +nomeInterno;    
+    
+    
+    $("#CAMPO_25").val(info);
+    
+    var coddoc = versaoId+id+"-"+nomeInterno;
+    
+    
+    $("#CAMPO_22").val(coddoc);
+    
+    
+    
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "13") { 
+           
+         $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {
+           debugger;
+    $("#CAMPO_24").val(data.ip); 
+}); 
+      
+    if($("#CAMPO_24").val() ===""){
+      debugger;
+       $.getJSON('http://www.geoplugin.net/json.gp?jsoncallback=?', function(data) {
+    $("#CAMPO_24").val(data.geoplugin_request); 
+});
+            
+    }
+    
+    setTimeout(function(){ 
+     debugger; 
+ $.getJSON('https://jsonip.com/?callback=?', function(data) {
+ $("#CAMPO_24").val(data.ip); 
+});
+    
+    
+    }, 100);
+       }
+    
+         
+    
+    
+     
+  }, 100);
+       
+      setTimeout(function(){ 
+      
+        
+      
+  
+      
+
+     
+         if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() != "2") {
+           
+           $("#divInterna1").addClass("div1");
+           $("#divInterna2").addClass("div1");
+           $("#divInterna3").addClass("div1");
+           $("#divInterna4").addClass("div1");
+           $("#divInterna5").addClass("div1");
+           $("#divInterna6").addClass("div1");
+           $("#divInterna7").addClass("div1");
+           $("#divInterna8").addClass("div1");
+           $("#divInterna9").addClass("div1");
+           $("#divInterna10").addClass("div1");
+           $("#divInterna11").addClass("div1");
+           $("#divInterna12").addClass("div1");
+           $("#divInterna13").addClass("div1");
+           $("#divInterna14").addClass("div1");
+           $("#divInterna15").addClass("div1");
+           $("#divInterna16").addClass("div1");
+            $("#divInterna17").addClass("div1");
+            $("#divInterna18").addClass("div1"); 
+           
+           
+           
+       }
+      
+          }, 100);
+          
+setTimeout(function(){ 
+
+  
+ var buscaEmpresa = function () {
+                if ($('#CAMPO_2').val().length >= 2) {
+                    debugger;
+                    var Nome = $('#CAMPO_2').val();
+                    var campos = [{
+                        "Id": 3,
+                        "TipoDocumentalId": 3,
+                        "Comparacao": 6,
+                        "ColunaTipo": "C",
+                        "Valor": Nome
+                    }];
+                    Ecm.PesquisarDocumentos(3, campos, 10, function (data) {
+                        debugger;
+                        Dados = JSON.parse(data);
+                        console.log(Dados);
+                        $('#CAMPO_2').autocomplete({
+                            focus: true,
+                            appendTo: ".divFornecCnpj",
+                            source: function (request, response) {
+                                var x = [];
+                                $.each(Dados.documentos, function (i,
+                                    val) {
+                                    debugger;
+                                    console.log(Dados.documentos[i]);
+                                    var item = {
+                                       value: val.CamposValor.find(
+                                           c => c.Id == 3)
+                                          .Valor,
+                                      label:  val.CamposValor.find(
+                                           c => c.Id == 3)
+                                           .Valor,
+                                       apl: val.CamposValor.find(
+                                         c => c.Id == 3)
+                                          .Valor ,
+                                      
+                                      
+                                      
+                                       empresa : val.CamposValor.find(
+                                            c => c.Id ==  3)
+                                            .Valor ,
+                                       cnpj : val.CamposValor.find(
+                                            c => c.Id ==  5)
+                                            .Valor ,
+                                        endcome : val.CamposValor.find(
+                                            c => c.Id ==  7)
+                                            .Valor ,
+                                     numero : val.CamposValor.find(
+                                            c => c.Id ==  8)
+                                            .Valor ,
+                                       complemento : val.CamposValor.find(
+                                            c => c.Id ==  9)
+                                            .Valor ,
+                                      bairro : val.CamposValor.find(
+                                            c => c.Id ==  10)
+                                            .Valor ,
+                                     cidade : val.CamposValor.find(
+                                            c => c.Id ==  11)
+                                            .Valor ,
+                                      estado : val.CamposValor.find(
+                                            c => c.Id ==  12)
+                                            .Valor ,
+                                      socioum : val.CamposValor.find(
+                                            c => c.Id ==  17)
+                                            .Valor ,
+                                      cpfum : val.CamposValor.find(
+                                            c => c.Id ==  18)
+                                            .Valor ,
+                                      cep : val.CamposValor.find(
+                                            c => c.Id ==  34)
+                                            .Valor ,
+                                       email : val.CamposValor.find(
+                                            c => c.Id ==  15)
+                                            .Valor ,
+                                      
+                                      
+                                    
+                             
+                                      
+                                       
+                                      
+                                    };
+                                    x.push(item);
+                                });
+                                response(x);
+                            },
+                            select: function (event, ui) {
+                               $("#CAMPO_2").val(ui.item.empresa);
+                              $("#CAMPO_3").val(ui.item.cnpj);
+                              $("#CAMPO_4").val(ui.item.endcome);
+                              $("#CAMPO_5").val(ui.item.numero);
+                              $("#CAMPO_6").val(ui.item.complemento);
+                              $("#CAMPO_7").val(ui.item.bairro);
+                              $("#CAMPO_8").val(ui.item.cidade);
+                              $("#CAMPO_9").val(ui.item.estado);
+                               $("#CAMPO_10").val(ui.item.socioum);
+                               $("#CAMPO_11").val(ui.item.cpfum);
+                               $("#CAMPO_19").val(ui.item.cep);
+                              $("#CAMPO_21").val(ui.item.email);
+                              
+                               
+                              
+                             
+                              
+
+                                return false;
+                            },
+                            open: function (event, ui) {
+                                $(this).removeClass("ui-corner-all").addClass(
+                                    "ui-corner-top");
+
+                            },
+                            close: function (event, ui) {
+                                $(this).removeClass("ui-corner-top").addClass(
+                                    "ui-corner-all");
+                            }
+                        })
+                    });
+                }
+            };
+
+     $('#CAMPO_2').keyup(function () {
+                    buscaEmpresa();
+
+                });
+}, 100);
+  
+      
+  </script>
+</head>
+<body style="cursor: col-resize;">
+<div class="page-header">
+<h1><img alt="" src="http://a3ccellerate.com/CONTRATOS/Imagens/aparencia/LogoEllosP.jpg" style="height: 50px; width: 250px;" /></h1>
+
+<h1>Ficha Contrato</h1>
+</div>
+
+<table border="0" cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>
+			<div id="divInterna1">Contrato<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="1" data-campo-largura="200" style="display:block;"><input id="@@1@@" placeholder="1 - Contrato" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="21" data-campo-largura="200" style="display:block;"><input id="@@21@@" placeholder="21 - E-mail" style="width:200px;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna2">Raz&atilde;o Social<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="2" data-campo-largura="200" style="display:block;"><input id="@@2@@" placeholder="2 - Razão Social" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna3">CNPJ<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="3" data-campo-largura="200" style="display:block;"><input id="@@3@@" placeholder="3 - CNPJ" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna4">Endere&ccedil;o<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="4" data-campo-largura="200" style="display:block;"><input id="@@4@@" placeholder="4 - Endereço Comercial" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna5">N&uacute;mero<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="5" data-campo-largura="200" style="display:block;"><input id="@@5@@" placeholder="5 - Número" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna6">Complemento<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="6" data-campo-largura="200" style="display:block;"><input id="@@6@@" placeholder="6 - Complemento" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna7">Bairro<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="7" data-campo-largura="200" style="display:block;"><input id="@@7@@" placeholder="7 - Bairro" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna8">Cidade<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="8" data-campo-largura="200" style="display:block;"><input id="@@8@@" placeholder="8 - Cidade" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna9">Estado<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="9" data-campo-largura="200" style="display:block;"><input id="@@9@@" placeholder="9 - Estado" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna10">CEP<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="19" data-campo-largura="200" style="display:block;"><input id="@@19@@" placeholder="19 - Cep Comercial" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="22" data-campo-largura="200" style="display:block;"><input id="@@22@@" placeholder="22 - codigodoc" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="23" data-campo-largura="200" style="display:block;"><input id="@@23@@" placeholder="23 - UsuarioId" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="24" data-campo-largura="200" style="display:block;"><input id="@@24@@" placeholder="24 - Ip" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="25" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@25@@" name="message" placeholder="25 - HASH" rows="10">   </textarea></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="26" data-campo-largura="200" style="display:block;"><input id="@@26@@" placeholder="26 - hashdoc" style="width:200px;" type="text" /></span></p>
+
+<table cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>
+			<div id="divInterna11">S&oacute;cio<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="10" data-campo-largura="200" style="display:block;"><input id="@@10@@" placeholder="10 - Sócio1" style="width:200px;" type="text" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna12">CPF<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="11" data-campo-largura="200" style="display:block;"><input id="@@11@@" placeholder="11 - CPF1" style="width:200px;" type="text" /></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="29" data-campo-largura="200" style="display:block;"><input id="@@29@@" placeholder="29 - assinaturaInternaPara" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="30" data-campo-largura="200" style="display:block;"><input id="@@30@@" placeholder="30 - assinaturaClientePara" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="31" data-campo-largura="200" style="display:block;"><input id="@@31@@" placeholder="31 - validarTokenPara" style="width:200px;" type="text" /></span></p>
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="32" data-campo-largura="200" style="display:block;"><input id="@@32@@" placeholder="32 - contratoAssinadoPara" style="width:200px;" type="text" /></span></p>
+
+<table border="0" cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>
+			<div id="divInterna13">Valor Honor&aacute;rios<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="12" data-campo-largura="200" style="display:block;"><input id="@@12@@" placeholder="12 - Valor Honorário" style="width:200px;" type="number" /></span></div>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna14">Data Vencimento<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="13" data-campo-largura="200" style="display:block;"><select id="@@13@@" style="width:200px;"><option placeholder="13 - Data Vencimento">13 - Data Vencimento</option><option value="Valor02">Valor 02</option> </select></span></div>
+			</td>
+			<td>
+			<div id="divInterna15">Prazo Contratual<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="14" data-campo-largura="200" style="display:block;"><select id="@@14@@" style="width:200px;"><option placeholder="14 - Prazo Vigencia">14 - Prazo Vigencia</option><option value="Valor02">Valor 02</option> </select></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="divInterna16">Inicio Contrato<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="15" data-campo-largura="200" style="display:block;"><input id="@@15@@" placeholder="15 - Inicio Contrato" style="width:200px;" type="date" /></span></div>
+			</td>
+			<td>
+			<div id="divInterna17">T&eacute;rmino Contrato<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="16" data-campo-largura="200" style="display:block;"><input id="@@16@@" placeholder="16 - Termino Contrato" style="width:200px;" type="date" /></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>
+			<div id="divInterna18">Observa&ccedil;&otilde;es<br />
+			<span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="17" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@17@@" name="message" placeholder="17 - Observações" rows="10">   </textarea></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<div class="divFornecCnpj">&nbsp;</div>
+</body>
+</html>

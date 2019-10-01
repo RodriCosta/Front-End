@@ -1,0 +1,1228 @@
+<html>
+<head>
+	<title></title>
+	<script>DevExpress.ui.dxOverlay.baseZIndex(99999);</script>
+	<style media="screen" type="text/css">body{font-family:Arial}
+	.tg  {border-collapse:collapse;border-spacing:0;width:100%}
+	.tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+	.tg .tg-yzt1{background-color:#d8d6d6;vertical-align:top}
+	.tg .tg-tit{background-color:#d8d6d6;color:#fd0903;text-align:center}
+	.tg .tg-ytvx{background-color:#d8d6d6;color:#000000}
+	.tg .tg-bsv2{background-color:#d8d6d6}
+	.tg .tg-xiek{background-color:#d8d6d6;color:#000000;vertical-align:top}
+
+	.tg_c  {border-collapse:collapse;border-spacing:0;width:100%}
+	.tg_c td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg_c th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+	.tg_c .tg-yzt1{background-color:#b1afaf;vertical-align:top}
+	.tg_c .tg-tit{background-color:#b1afaf;color:#fd0903;text-align:center}
+	.tg_c .tg-ytvx{background-color:#b1afaf;color:#ffffff}
+	.tg_c .tg-bsv2{background-color:#b1afaf}
+	.tg_c .tg-xiek{background-color:#b1afaf;color:#ffc000;vertical-align:top}
+	.dx-tabpanel .dx-tab {
+		background:LightGray;
+		}
+	</style>
+	<script >
+  var OrigemUm = [{ "IDum": 1, "Name": "Brasília (BSB/SBBR)" },
+{ "IDum": 2, "Name": "BH-Confins (CNF/SBCF)" },
+{ "IDum": 3, "Name": "Pampulha (PLU/SBBH)" },
+{ "IDum": 4, "Name": "Galeão (GIG/SBGL)" },
+{ "IDum": 5, "Name": "Santos Dumont (SDU/SBRJ)" },
+{ "IDum": 6, "Name": "Guarulhos (GRU/SBGR)" },
+ { "IDum": 7, "Name": "Congonhas (CGH/SBSP)" },
+{ "IDum": 8, "Name": "Afonso Pena (CWB/SBCT)" }];
+
+var DestinoDois = [{ "IDIdois": 1, "Name": "Brasília (BSB/SBBR)" },
+{ "IDIdois": 2, "Name": "BH-Confins (CNF/SBCF)" },
+{ "IDIdois": 3, "Name": "Pampulha (PLU/SBBH)" },
+{ "IDIdois": 4, "Name": "Galeão (GIG/SBGL)" },
+{ "IDIdois": 5, "Name": "Santos Dumont (SDU/SBRJ)" },
+{ "IDIdois": 6, "Name": "Guarulhos (GRU/SBGR)" },
+ { "IDIdois": 7, "Name": "Congonhas (CGH/SBSP)" },
+{ "IDIdois": 8, "Name": "Afonso Pena (CWB/SBCT)" }];
+
+var Escala = [{ "IDesc": 1, "Name": "SIM" },
+                 { "IDesc": 2, "Name": "NÃO" }];
+
+var Hoteis = [{ "IDH": 1, "Name": "Ibis" },
+{ "IDH": 2, "Name": "Budget" },
+{ "IDH": 3, "Name": "Fórmula 1"}];
+
+
+var Opcao = [{ "IDop": 1, "Name": "1º" },
+                 { "IDop": 2, "Name": "2º" },
+                  { "IDop": 3, "Name": "3º" }];
+      
+ var Periodo = [{ "IDTI": 1, "Name": "Manhã" },
+{ "IDTI": 2, "Name": "Tarde" },
+{ "IDTI": 3, "Name": "Noite" }
+
+];
+
+var btnSalvou = false;  
+
+$(function () {
+
+
+  var Diaria ="";
+  var date1 ="";
+  var date2 ="";
+  var timeDiff = "";
+  var diffDays="";
+
+    
+  var lookupDataSourceHoteis = {
+       store: new DevExpress.data.CustomStore({
+           key: "IDH",
+          loadMode: "raw",
+           load: function () {
+              return Hoteis;
+           }
+     }),
+        sort: "DESCRICAO",
+      paginate: true
+   }
+        var lookupDataSourcePeriodo = {
+        store: new DevExpress.data.CustomStore({
+            key: "IDTI",
+            loadMode: "raw",
+            load: function () {
+                return Periodo;
+            }
+        }),
+        sort: "DESCRICAO",
+        paginate: true
+    }
+  
+    var lookupDataSourceOrium = {
+        store: new DevExpress.data.CustomStore({
+            key: "IDum",
+            loadMode: "raw",
+            load: function () {
+                return OrigemUm;
+            }
+        }),
+        sort: "DESCRICAO",
+        paginate: true
+    }   
+    
+    var lookupDataSourceDestdois = {
+        store: new DevExpress.data.CustomStore({
+            key: "IDIdois",
+            loadMode: "raw",
+            load: function () {
+                return DestinoDois;
+            }
+        }),
+        sort: "DESCRICAO",
+        paginate: true
+    }
+          
+    var lookupDataSourceEsc = {
+        store: new DevExpress.data.CustomStore({
+            key: "IDesc",
+            loadMode: "raw",
+            load: function () {
+                return Escala;
+            }
+        }),
+        sort: "DESCRICAO",
+        paginate: true
+    }
+
+    var lookupDataSourceOp = {
+        store: new DevExpress.data.CustomStore({
+            key: "IDop",
+            loadMode: "raw",
+            load: function () {
+                return Opcao;
+            }
+        }),
+        sort: "DESCRICAO",
+        paginate: true
+    }
+    
+   var tabPanelItems  =  [
+            { title: "SOLICITAÇÃO", template: "tab1" },
+            { title: "VOOS", template: "tab2" },
+           { title: "CONFIRMAÇÃO", template: "tab3" },
+           { title: "HOTEIS", template: "tab4" }
+        ];
+
+  var tabPanel =  $("#relatedTab_container").dxTabPanel({
+     width: 1100,
+        dataSource: tabPanelItems,
+        deferRendering: false
+    }).dxTabPanel("instance");
+  
+       setTimeout(function (  ) {
+        
+                AtualizaGridVoos();
+                AtualizaGridSolic();
+               AtualizaGridConf();
+               AtualizaGridHot();
+
+            }, 100);
+  
+  
+          if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "2") {
+            tabPanelItems.splice(1, 2 );
+            tabPanel.option('dataSource', tabPanelItems);
+ 
+}
+         else  if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "8") {
+            tabPanelItems.splice(1, 2 );
+            tabPanel.option('dataSource', tabPanelItems);
+ 
+}
+else if( DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "3"  ) {
+      tabPanelItems.splice(1, 2);
+            tabPanel.option('dataSource', tabPanelItems);
+ 
+}
+  else if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "4"  )
+ {
+   
+      tabPanelItems.splice(2);
+  tabPanel.option('dataSource', tabPanelItems);
+} 
+else if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "5"  )
+ {
+   
+      tabPanelItems.splice(2,2);
+  tabPanel.option('dataSource', tabPanelItems);
+}
+    else if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "6"  )
+ {
+   
+      tabPanelItems.splice(1,1);
+  tabPanel.option('dataSource', tabPanelItems);
+}
+    else if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "7"  )
+ {
+   
+      tabPanelItems.splice(1,1);
+  tabPanel.option('dataSource', tabPanelItems);
+}
+     else if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "9"  )
+ {
+   
+      tabPanelItems.splice(1,1);
+  tabPanel.option('dataSource', tabPanelItems);
+}
+
+
+   function AtualizaGridSolic() {
+  
+ var gridReemb = [];
+ // pegar o conteudo do Campo de controle e joga no grid caso esteja preenchido
+ if ($("#CAMPO_16").val() != undefined && ($("#CAMPO_16").val() != "" || $("#CAMPO_16").text() != "")) {
+     if ($("#CAMPO_16").val() != "") {
+         gridReemb = JSON.parse($("#CAMPO_16").val());
+ 
+       
+     } else {
+         gridReemb = JSON.parse($("#CAMPO_16").text());
+       
+     }
+ }
+    $("#gridContainerSolic").dxDataGrid({
+        
+    
+            dataSource:gridReemb,
+            editing: {
+                allowUpdating: true,
+                allowAdding: true,
+                allowDeleting: true,
+                mode: "batch",
+         
+            },
+         
+           columns: [
+              {
+                          
+                            dataField: "Checkin",
+                            allowEditing: true,
+                            caption: "Checkin",
+                            dataType: "date",
+                         
+                                     format: "MM/yyyy",
+    editorOptions: {
+        maxZoomLevel: 'year',
+        minZoomLevel: 'century',
+    },
+                            width: 150
+                        }
+                       ,{
+                          
+                            dataField: "Checkout",
+                            allowEditing: true,
+                            caption: "Checkout",
+                            dataType: "date",
+                            //format: 'MM/yyyy',
+                            format: "monthAndYear",
+    editorOptions: {
+        maxZoomLevel: 'year',
+        minZoomLevel: 'century',
+    },
+                            width: 150
+                        },
+             {
+                          
+                            dataField: "Teste",
+                            allowEditing: true,
+                            caption: "Teste",
+                        
+                            width: 200
+                        },
+                       {
+                          
+                            dataField: "Data",
+                            allowEditing: true,
+                            caption: "Data",
+                            dataType: "date",
+                            format: 'dd/MM/yyyy',
+                            width: 120
+                        },
+                      {
+                            dataField: "IDum",
+                            caption: "Origem",
+                            width: 400,
+                            lookup: {
+                                dataSource: lookupDataSourceOrium,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDum",
+                                displayExpr: 'Name'
+                            }
+                        },
+                       
+                    
+                        {
+                            dataField: "IDIdois",
+                            caption: "Destino",
+                            width: 400,
+                            lookup: {
+                                dataSource: lookupDataSourceDestdois,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDIdois",
+                                displayExpr: 'Name'
+                            }
+                        },
+                      
+                   
+                  {
+                            dataField: "IDTI",
+                            caption: "Periodo",
+                            width: 75,
+                            lookup: {
+                                dataSource: lookupDataSourcePeriodo,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDTI",
+                                displayExpr: 'Name'
+                            }
+                        }
+                      
+                      
+                      
+
+                    ],
+            onRowInserted: function (e) {
+              $("#CAMPO_16").val(JSON.stringify(gridReemb));
+               $("#CAMPO_14").val(JSON.stringify(gridReemb));
+            },
+            onRowUpdated: function (e) {
+              $("#CAMPO_16").val(JSON.stringify(gridReemb));
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+            },
+            onRowRemoved: function (e) {
+              $("#CAMPO_16").val(JSON.stringify(gridReemb));
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+              
+            },onEditorPrepared: function(e) {
+              
+                if(e.dataField=="Checkout"){
+                   e.editorName = "dxDateBox";
+                   e.editorOptions.mask = "MM/yyyy";
+                    
+                  
+            var dateBox=  $(e.editorElement).dxDateBox("instance").on("valueChanged", function (args) {
+              
+               var dataGrid = $("#gridContainerSolic").dxDataGrid("instance");
+                var dateum = e.row.data.Checkin ;
+              
+                debugger;
+                var datedois = dateBox.option('value');
+             
+                debugger;
+      
+                if(dateum > datedois) {   
+                  debugger; 
+               Ecm.alertErro("Data Invalida");
+                  this.refresh();
+                  
+                                    }
+
+              })
+              }
+                    if(e.dataField=="Checkin"){
+                          e.editorName = "dxDateBox";
+                          e.editorOptions.mask = "MM/yyyy";
+                       
+      
+            var dateBox=  $(e.editorElement).dxDateBox("instance").on("valueChanged", function (args) {   
+        
+               var dataGrid = $("#gridContainerSolic").dxDataGrid("instance");
+              
+                var dateum = dateBox.option('value') ;
+              
+                debugger;
+                var datedois = e.row.data.Checkout;
+           
+                debugger;
+      
+                if(dateum  > datedois ) {   
+                  debugger; 
+               Ecm.alertErro("Data Invalida");
+                  this.refresh();
+                  
+                                    }
+
+              })
+              }
+   
+},
+        }
+                                                      
+    );
+  
+   if (!DocumentoVisualizacaoForm.estouEditando()) {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+     
+           if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "3") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "4") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "5") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+              if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "6") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+            if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "7") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+     
+      if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "8") {
+                    $("#gridContainerSolic").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                } 
+}
+  
+  
+  
+ //Function do Grid de Voos 
+  
+    function AtualizaGridVoos() {
+var  Qualquer = true;
+  if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "6") {
+                 
+  Qualquer = false;
+    
+ }
+      
+      
+ var gridReemb = [];
+      
+ // pegar o conteudo do Campo de controle e joga no grid caso esteja preenchido
+ if ($("#CAMPO_14").val() != undefined && ($("#CAMPO_14").val() != "" || $("#CAMPO_14").text() != "")) {
+     if ($("#CAMPO_14").val() != "") {
+         gridReemb = JSON.parse($("#CAMPO_14").val());
+      
+     } else {
+         gridReemb = JSON.parse($("#CAMPO_14").text());
+    
+     }
+ }
+    $("#gridContainer").dxDataGrid({
+        
+    
+            dataSource:gridReemb,
+            editing: {
+                allowUpdating: true,
+                allowAdding: true,
+                allowDeleting: true,
+                mode: "batch",
+         
+            },
+         
+            columns: [
+               {
+                  
+                    dataField: "Voo",
+                 allowEditing:  Qualquer,
+                    caption: "Voo",
+                    width: 75
+                },
+               {
+                    dataField: "IDum",
+                    caption: "Origem",
+                allowEditing:  Qualquer,
+                    width: 195,
+                    lookup: {
+                        dataSource: lookupDataSourceOrium,
+                        paging: {
+                            enabled: true,
+                            pagesize: 20
+                        },
+                        type: "json",
+                        displayExpr: "DESCRICAO",
+                        valueExpr: "IDum",
+                        displayExpr: 'Name'
+                    }
+                },
+              {
+                  
+                    dataField: "Data/Hora Partida",
+                allowEditing:  Qualquer,
+                    caption: "Data/Hora Partida",
+                    dataType: "datetime",
+                    format: 'dd/MM/yyyy HH:mm',
+                    width: 150
+                },
+
+                {
+                    dataField: "IDIdois",
+                    caption: "Destino",
+         allowEditing:  Qualquer,
+                    width: 150,
+                    lookup: {
+                        dataSource: lookupDataSourceDestdois,
+                        paging: {
+                            enabled: true,
+                            pagesize: 20
+                        },
+                        type: "json",
+                        displayExpr: "DESCRICAO",
+                        valueExpr: "IDIdois",
+                        displayExpr: 'Name'
+                    }
+                },{
+                  
+                    dataField: "Data/Hora Chegada",
+                    allowEditing:  Qualquer,
+                    caption: "Data/Hora Chegada",
+                    dataType: "datetime",
+                    format: 'dd/MM/yyyy HH:mm',
+                    width: 150
+                },{
+                    dataField: "IDesc",
+                    caption: "Escala",
+                    width: 75,
+                 allowEditing:  Qualquer,
+                    lookup: {
+                        dataSource: lookupDataSourceEsc,
+                        paging: {
+                            enabled: true,
+                            pagesize: 20
+                        },
+                        type: "json",
+                        displayExpr: "DESCRICAO",
+                        valueExpr: "IDesc",
+                        displayExpr: 'Name'
+                    }
+                },
+                {
+                            dataField: "IDTI",
+                            caption: "Periodo",
+              allowEditing:  Qualquer,
+                            width: 75,
+                            lookup: {
+                                dataSource: lookupDataSourcePeriodo,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDTI",
+                                displayExpr: 'Name'
+                            }
+                        },{
+                            dataField: "IDop",
+                            caption: "Opção",
+                         allowEditing: true,
+                            width: 75,
+                            lookup: {
+                                dataSource: lookupDataSourceOp,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDop",
+                                displayExpr: 'Name'
+                            }
+                        }
+            
+            ],
+            onRowInserted: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+            
+            },
+            onRowUpdated: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            },
+            onRowRemoved: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            }
+        }      
+    );
+  
+   if (!DocumentoVisualizacaoForm.estouEditando()) {
+                    $("#gridContainer").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+          if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "6") {
+                    $("#gridContainer").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "2") {
+                    $("#gridContainer").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+       
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "3") {
+                    $("#gridContainer").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+      
+            if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "4") {
+              
+                    $("#gridContainer").dxDataGrid("columnOption", "IDop", "visible", false);
+              
+                }
+    
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "7") {
+                    $("#gridContainer").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+           
+      
+            
+}
+  
+  
+  
+  //Function do Grid de Confirmação
+  
+    function AtualizaGridConf() {
+  
+ var gridReemb = [];
+ // pegar o conteudo do Campo de controle e joga no grid caso esteja preenchido
+ if ($("#CAMPO_14").val() != undefined && ($("#CAMPO_14").val() != "" || $("#CAMPO_14").text() != "")) {
+     if ($("#CAMPO_14").val() != "") {
+         gridReemb = JSON.parse($("#CAMPO_14").val());
+     } else {
+         gridReemb = JSON.parse($("#CAMPO_14").text());
+     }
+ }
+    $("#gridContainerConf").dxDataGrid({
+        
+    
+            dataSource:gridReemb,
+            editing: {
+                allowUpdating: true,
+                allowAdding: true,
+                allowDeleting: true,
+                mode: "batch",
+         
+            },
+         
+           columns: [
+                       {
+                          
+                            dataField: "Voo",
+                            allowEditing: false,
+                            caption: "Voo",
+                            width: 75
+                        },
+                       {
+                            dataField: "IDum",
+                            caption: "Origem",
+                         allowEditing: false,
+                            width: 200,
+                            lookup: {
+                                dataSource: lookupDataSourceOrium,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDum",
+                                displayExpr: 'Name'
+                            }
+                        },
+                      {
+                          
+                            dataField: "Data/Hora Partida",
+                            allowEditing: false,
+                            caption: "Data/Hora Partida",
+                            dataType: "datetime",
+                            format: 'dd/MM/yyyy HH:mm',
+                            width: 150
+                        },
+
+                        {
+                            dataField: "IDIdois",
+                            caption: "Destino",
+                          allowEditing: false,
+                            width: 200,
+                            lookup: {
+                                dataSource: lookupDataSourceDestdois,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDIdois",
+                                displayExpr: 'Name'
+                            }
+                        },{
+                          
+                            dataField: "Data/Hora Chegada",
+                            allowEditing: false,
+                            caption: "Data/Hora Chegada",
+                            dataType: "datetime",
+                            format: 'dd/MM/yyyy HH:mm',
+                            width: 150
+                        },{
+                            dataField: "IDesc",
+                            caption: "Escala",
+                            width: 75,
+                          allowEditing: false,
+                            lookup: {
+                                dataSource: lookupDataSourceEsc,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDesc",
+                                displayExpr: 'Name'
+                            }
+                        },
+                      {
+                            dataField: "IDTI",
+                            caption: "Periodo",
+                            width: 75,
+                            lookup: {
+                                dataSource: lookupDataSourcePeriodo,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDTI",
+                                displayExpr: 'Name'
+                            }
+                        }
+                      ,{
+                            dataField: "IDop",
+                            caption: "Opção",
+                         allowEditing: true,
+                            width: 75,
+                            lookup: {
+                                dataSource: lookupDataSourceOp,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDop",
+                                displayExpr: 'Name'
+                            }
+                        }
+                    ],
+            onRowInserted: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+            
+            },
+            onRowUpdated: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            },
+            onRowRemoved: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            }
+        }      
+    );
+  
+   if (!DocumentoVisualizacaoForm.estouEditando()) {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "2") {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+          if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "3") {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+       if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "4") {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+        if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "5") {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+      if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "5") {
+              
+              $("#gridContainerConf").dxDataGrid("columnOption", "IDop", "visible", false);
+              
+            }
+           if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "6") {
+           
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+
+             
+                }
+        
+          if (DocumentoVisualizacaoForm.retornaDocumento().atividadeId.toString() === "7") {
+                    $("#gridContainerConf").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+}
+    function AtualizaGridHot() {
+  
+ var gridReemb = [];
+ // pegar o conteudo do Campo de controle e joga no grid caso esteja preenchido
+ if ($("#CAMPO_14").val() != undefined && ($("#CAMPO_14").val() != "" || $("#CAMPO_14").text() != "")) {
+     if ($("#CAMPO_14").val() != "") {
+         gridReemb = JSON.parse($("#CAMPO_14").val());
+     } else {
+         gridReemb = JSON.parse($("#CAMPO_14").text());
+     }
+ }  
+ $("#gridContainerHot").dxDataGrid({
+        
+    
+            dataSource:gridReemb,
+            editing: {
+                allowUpdating: true,
+                allowAdding: true,
+                allowDeleting: true,
+                mode: "batch",
+         
+            },
+         
+           columns: [
+                      
+                       {
+                         //hoteis
+                            dataField: "IDH",
+                            caption: "Hoteis",
+                         allowEditing: true,
+                            width: 200,
+                            lookup: {
+                                dataSource: lookupDataSourceHoteis,
+                                paging: {
+                                    enabled: true,
+                                    pagesize: 20
+                                },
+                                type: "json",
+                                displayExpr: "DESCRICAO",
+                                valueExpr: "IDH",
+                                displayExpr: 'Name'
+                            }
+                        },
+                      {
+                          
+                            dataField: "Checkin",
+                            allowEditing: true,
+                            caption: "Checkin",
+                            dataType: "date",
+                            format: 'dd/MM/yyyy',
+                            width: 150
+                        }
+                       ,{
+                          
+                            dataField: "Checkout",
+                            allowEditing: true,
+                            caption: "Checkout",
+                            dataType: "date",
+                            format: 'dd/MM/yyyy',
+                            width: 150
+                        },{
+                          
+                            dataField: "Valor",
+                            allowEditing: true,
+                            caption: "Valor",
+                            width: 150
+                        },{
+                          
+                            dataField: "Diaria",
+                            allowEditing: true,
+                            caption: "Diaria",
+                            width: 150
+                        },{
+                                  dataField: "Total",
+                          allowEditing: true,
+                                  caption: "Total",
+                                  alignment: "left",
+                                  width: 175,
+                                  valueFormat: {
+                                  type: 'currency',
+                                  precision: 2,
+                    
+                             },
+
+                valueFormat: {
+                                  type: 'currency',
+                                   currency: 'BRL',
+                                   precision: 2,
+                               
+                             },
+
+                   editorOptions: {
+               
+                          }
+                            
+                           
+                  
+                          }
+                     
+                     
+                    ],
+              summary: {
+              recalculateWhileEditing: true,
+     			
+              totalItems: [{
+
+              column: "Total",
+              summaryType: "sum",
+              valueFormat: {
+              type: 'currency',
+              currency: 'BRL',
+              precision: 2,
+
+              },
+
+              displayFormat: 'Total: R{0}'
+
+                 
+              }]
+    
+          },
+   
+   onRowUpdating: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+   
+            
+            }, onRowInserted: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+            
+            },
+            onRowUpdated: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            },
+            onRowRemoved: function (e) {
+              $("#CAMPO_14").val(JSON.stringify(gridReemb));
+             
+            }, onEditorPrepared: function (e) {
+ 
+                    if (e.dataField == "Valor") {
+                        $(e.editorElement).dxTextBox("instance").on("valueChanged", function (args) {                           
+                           var dataGrid = $("#gridContainerHot").dxDataGrid("instance");
+                          if(args.value != ""){
+                            var valor = parseInt(args.value);
+                            var date1 = e.row.data.Checkin ;
+                             debugger;
+                             var date2 = e.row.data.Checkout;
+                              debugger;
+                              var timeDiff = Math.abs(new Date(date2).getTime() - new Date(date1).getTime());
+                              var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));  
+                              Diaria = diffDays*valor;
+                              var row = e.row.rowIndex;
+                             dataGrid.cellValue(row , "Diaria", diffDays );
+                             dataGrid.cellValue(row , "Total", Diaria );   
+                             dataGrid.cellValue(row , "Valor", valor );  
+                            debugger;
+                          }
+                        });
+                    }
+              if(e.dataField=="Checkout"){
+            var dateBox=  $(e.editorElement).dxDateBox("instance").on("valueChanged", function (args) {                           
+               var dataGrid = $("#gridContainerHot").dxDataGrid("instance");
+                var dateum = e.row.data.Checkin ;
+              
+                debugger;
+                var datedois = dateBox.option('value');
+             
+                debugger;
+      
+                if(dateum > datedois) {   
+                  debugger; 
+               Ecm.alertErro("Data Invalida");
+                  this.refresh();
+                  
+                                    }
+
+              })
+              }
+                        if(e.dataField=="Checkin"){
+            var dateBox=  $(e.editorElement).dxDateBox("instance").on("valueChanged", function (args) {                           
+               var dataGrid = $("#gridContainerHot").dxDataGrid("instance");
+              
+                var dateum = dateBox.option('value') ;
+              
+                debugger;
+                var datedois = e.row.data.Checkout;
+           
+                debugger;
+      
+                if(dateum  > datedois ) {   
+                  debugger; 
+               Ecm.alertErro("Data Invalida");
+                  this.refresh();
+                  
+                                    }
+
+              })
+              }
+              
+                }
+});
+ 
+   if (!DocumentoVisualizacaoForm.estouEditando()) {
+                    $("#gridContainerHot").dxDataGrid({
+                        editing: {
+                            mode: "batch",
+                            allowUpdating: false,
+                            allowDeleting: false,
+                            allowAdding: false,
+                        }
+                    });
+                }
+      
+}
+  
+    
+}
+  
+);
+  
+  </script>
+</head>
+<body style="cursor: col-resize;">
+<table class="tg">
+	<tbody>
+		<tr>
+			<td class="tg-ytvx" colspan="2">Solcita&ccedil;&atilde;o<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="1" data-campo-largura="200" style="display:block;"><input id="@@1@@" placeholder="1 - Solicitação" style="width:200px;border: 0;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td class="tg-ytvx" colspan="2">Nome<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="2" data-campo-largura="200" style="display:block;"><input id="@@2@@" placeholder="2 - Nome" style="width:200px;border: 0;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td class="tg-ytvx">Departamento<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="3" data-campo-largura="200" style="display:block;"><select id="@@3@@" style="width:200px;border: 0;color:gray"><option placeholder="3 - Departamento">3 - Departamento</option><option value="Valor02">Valor 02</option> </select></span></td>
+			<td class="tg-ytvx">Centro de Custo<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="4" data-campo-largura="200" style="display:block;"><input id="@@4@@" placeholder="4 - Centro de Custo" style="width:200px;border: 0;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td class="tg-ytvx" colspan="2">Descri&ccedil;&atilde;o<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="5" data-campo-largura="200" style="width: 100%; height: 80px;border: 0;"><textarea cols="60" id="@@5@@" name="message" placeholder="5 - Descrição" rows="10">   </textarea></span></td>
+		</tr>
+		<tr>
+			<td class="tg-ytvx" colspan="2">Hotel<br />
+			<span class="tg-bsv2" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="15" data-campo-largura="200" style="display:block;"><input id="@@15@@" placeholder="15 - Hotel" style="width:200px;border: 0;" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td class="tg-ytvx" colspan="2">
+			<div id="relatedTab_container" style="background: #ffffff;">
+			<div data-options="dxTemplate : { name: 'tab1' } " id="Tab"><span id="counter"></span>
+			<div id="gridContainerSolic">&nbsp;</div>
+			</div>
+
+			<div data-options="dxTemplate : { name: 'tab2' } " id="Tab2"><span id="counter"></span>
+
+			<div id="gridContainer">&nbsp;</div>
+			</div>
+
+			<div data-options="dxTemplate : { name: 'tab3' } " id="Tab3"><span id="counter"></span>
+
+			<div id="gridContainerConf">&nbsp;</div>
+			</div>
+
+			<div data-options="dxTemplate : { name: 'tab4' } " id="Tab4"><span id="counter"></span>
+
+			<div id="gridContainerHot">&nbsp;</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<!--Campo de Controle da Função GridSolic-->
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="16" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@16@@" name="message" placeholder="16 - Grid2" rows="10">   </textarea></span></p>
+<!--Campo de Controle da Função GridVoos-->
+
+<p hidden=""><span class="h-card" data-campo-altura="10" data-campo-classe="" data-campo-estilo="" data-campo-id="14" data-campo-largura="200" style="display:block;"><textarea cols="60" id="@@14@@" name="message" placeholder="14 - Grid" rows="10">   </textarea></span></p>
+</body>
+</html>
